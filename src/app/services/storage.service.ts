@@ -7,7 +7,7 @@ export abstract class StorageService {
 }
 
 @Injectable()
-export class LocalStorageServie extends StorageService {
+export class LocalStorageService extends StorageService {
   public get(): Storage {
     return localStorage;
   }

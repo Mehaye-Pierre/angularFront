@@ -4,7 +4,7 @@
             Panier
         </h3>
         <h5>
-            Total ({{itemCount}} objets): {{(cart | async).itemsTotal}} euros
+            Total ({{itemCount}} objets): {{(cart | async).itemsTotal.toFixed(2)}} €
         </h5>
     </div>
 </div>

@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { CachingServiceBase } from './caching.service';
 
-let count = 0;
+const count = 0;
 
 @Injectable()
 export class ProductsDataService extends CachingServiceBase {
@@ -22,7 +22,7 @@ export class ProductsDataService extends CachingServiceBase {
                                            .get('./assets/products.json')
                                            .map((response) => response.json()
                                                                       .map((item) => {
-                                                                        let model = new Product();
+                                                                        const model = new Product();
                                                                         model.updateFrom(item);
                                                                         return model;
                                                                       })));

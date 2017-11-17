@@ -1,13 +1,15 @@
-<h3>Nos dernières sorties</h3>
-<ul class="product-list">
-    <li *ngFor="let product of products | async" class="product-container">
-        <div class="row">
+<div>
+    <h3>
+        Panier détaillé
+    </h3>
+    <div *ngFor="let product of products | async" class="product-container">
+        <div class="row" *ngIf="productInCart(product) | async">
             <div>
                 <h4>
                     <span class="text--bold js-product-name">{{product.name}}</span>
                     <small class="product_price js-product-price">{{product.price.toFixed(2)}} €</small>
+                    <small class="product_quantity ">{{productInCart(product)}} exemplaires</small>
                 </h4>
-                <p class="js-product-desc">{{product.description}}</p>
                 <p>
                     <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(product, 1)">Acheter</button>
                     <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, 1)">Enlever</button>
@@ -15,5 +17,11 @@
                 </p>
             </div>
         </div>
-    </li>
-</ul>
+    </div>
+    <button type="button" class="btn btn-primary js-btn-empty" *ngIf="itemCount" (click)="emptyCart()">Tout vider</button>
+
+    <h2>
+        <span class="text--bold js-product-total">TOTAL : {{(cart | async).itemsTotal.toFixed(2)}} €</span>
+
+    </h2>
+</div>

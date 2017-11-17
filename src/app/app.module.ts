@@ -8,14 +8,16 @@ import { CartComponent } from './cart/cart.component';
 import { StoreComponent } from './store/store.component';
 import { ProductsDataService } from './services/products.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
-import { LocalStorageServie, StorageService } from './services/storage.service';
+import { LocalStorageService, StorageService } from './services/storage.service';
+import { CartDetailledComponent } from './cart-detailled/cart-detailled.component';
 
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     CartComponent,
-    StoreComponent
+    StoreComponent,
+    CartDetailledComponent
   ],
   imports: [
     BrowserModule,
@@ -24,8 +26,8 @@ import { LocalStorageServie, StorageService } from './services/storage.service';
   ],
   providers: [
     ProductsDataService,
-    LocalStorageServie,
-    { provide: StorageService, useClass: LocalStorageServie },
+    LocalStorageService,
+    { provide: StorageService, useClass: LocalStorageService },
     {
       deps: [StorageService, ProductsDataService],
       provide: ShoppingCartService,
