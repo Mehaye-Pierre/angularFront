@@ -22,8 +22,8 @@ export class StoreComponent implements OnInit {
     this.shoppingCartService.addItem(product, 1);
   }
 
-  public removeProductFromCart(product: Product): void {
-    this.shoppingCartService.addItem(product, -1);
+  public removeProductFromCart(product: Product, quantity: number): void {
+    this.shoppingCartService.addItem(product, -quantity);
   }
 
   public productInCart(product: Product): boolean {

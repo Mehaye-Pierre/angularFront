@@ -61,7 +61,6 @@ export class ShoppingCartService {
     cart.itemsTotal = cart.items
                           .map((item) => item.quantity * this.products.find((p) => p.id === item.productId).price)
                           .reduce((previous, current) => previous + current, 0);
-    // cart.grossTotal = cart.itemsTotal;
   }
 
   private retrieve(): ShoppingCart {
