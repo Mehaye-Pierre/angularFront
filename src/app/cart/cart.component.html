@@ -3,8 +3,7 @@
         <h3>
             Panier
         </h3>
-        <h5>
-            <small>Total ({{itemCount}} objet</small><small *ngIf="itemCount > 1">s</small><small>) : {{(cart | async).itemsTotal.toFixed(2)}} €</small>
-    </h5>
-    </small>
+        <div class="active"><a href="/cart">Total ({{itemCount}} objet<span *ngIf="itemCount > 1">s</span>) <span class="badge">{{(cart | async).itemsTotal.toFixed(2)}} €</span></a>
+</div>
+</small>
 </div>
