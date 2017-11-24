@@ -10,10 +10,12 @@ import { ProductsDataService } from './services/products.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { LocalStorageService, StorageService } from './services/storage.service';
 import { CartDetailledComponent } from './cart-detailled/cart-detailled.component';
+import { DetailledArticleComponent } from './detailled-article/detailled-article.component';
 
 const appRoutes: Routes = [
   { path: 'cart', component: CartDetailledComponent },
   { path: '', component: StoreComponent },
+  { path: 'detail/:id', component: DetailledArticleComponent },
   { path: '**', component: StoreComponent }
 ];
 
@@ -23,7 +25,8 @@ const appRoutes: Routes = [
     AppComponent,
     CartComponent,
     StoreComponent,
-    CartDetailledComponent
+    CartDetailledComponent,
+    DetailledArticleComponent
   ],
   imports: [
     BrowserModule,

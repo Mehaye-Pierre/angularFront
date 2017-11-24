@@ -1,0 +1,14 @@
+<div *ngIf="product">
+    <div>
+        <h4>
+            <span class="text--bold js-product-name">{{product.name}}</span>
+            <small class="product_price js-product-price">{{product.price.toFixed(2)}} €</small>
+        </h4>
+        <p class="js-product-desc">{{product.description}}</p>
+        <p>
+            <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(product, 1)">Acheter</button>
+            <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, 1)">Enlever</button>
+            <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, productInCart(product))">Enlever tout</button>
+        </p>
+    </div>
+</div>
