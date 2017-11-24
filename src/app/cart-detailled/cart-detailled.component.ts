@@ -1,11 +1,20 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
+import { CartItem } from '../models/cart-item.model';
 import { ShoppingCart } from '../models/shopping-cart.model';
 import { ProductsDataService } from '../services/products.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Observer } from 'rxjs/Observer';
+
+
+interface CurrentItem extends CartItem {
+  product: Product;
+  quantity: number;
+  price: number;
+}
+
 
 @Component({
   selector: 'app-cart-detailled',
@@ -16,6 +25,7 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
   public products: Observable<Product[]>;
   public cart: Observable<ShoppingCart>;
   public itemCount: number;
+  public itemList: CurrentItem[];
 
   private cartSubscription: Subscription;
 
@@ -28,10 +38,22 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.products = this.productsService.all();
+    // this.products = this.productsService.all();
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
+      this.productsService.all().subscribe((products) => {
+        this.itemList = cart.items
+        .map((item) => {
+           const product = products.find((p) => p.id === item.productId);
+           return {
+             ...item,
+             product,
+             quantity : item.quantity,
+             price: product.price,
+              };
+        });
+    });
     });
   }
 

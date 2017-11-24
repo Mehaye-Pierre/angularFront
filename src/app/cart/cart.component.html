@@ -1,10 +1,10 @@
 <div class="page-header">
-    <div class=" pull-right">
+    <small class=" pull-right">
         <h3>
             Panier
         </h3>
         <h5>
-            Total ({{itemCount}} objets): {{(cart | async).itemsTotal.toFixed(2)}} €
-        </h5>
-    </div>
+            <small>Total ({{itemCount}} objet</small><small *ngIf="itemCount > 1">s</small><small>) : {{(cart | async).itemsTotal.toFixed(2)}} €</small>
+    </h5>
+    </small>
 </div>

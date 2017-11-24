@@ -17,8 +17,8 @@ export class StoreComponent implements OnInit {
                      private shoppingCartService: ShoppingCartService) {
   }
 
-  public addProductToCart(product: Product): void {
-    this.shoppingCartService.addItem(product, 1);
+  public addProductToCart(product: Product, quantity: number): void {
+    this.shoppingCartService.addItem(product, quantity);
   }
 
   public removeProductFromCart(product: Product, quantity: number): void {

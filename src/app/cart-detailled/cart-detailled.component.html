@@ -2,26 +2,24 @@
     <h3>
         Panier détaillé
     </h3>
-    <div *ngFor="let product of products | async" class="product-container">
-        <div class="row" *ngIf="productInCart(product) | async">
-            <div>
-                <h4>
-                    <span class="text--bold js-product-name">{{product.name}}</span>
-                    <small class="product_price js-product-price">{{product.price.toFixed(2)}} €</small>
-                    <small class="product_quantity ">{{productInCart(product)}} exemplaires</small>
-                </h4>
-                <p>
-                    <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(product, 1)">Acheter</button>
-                    <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, 1)">Enlever</button>
-                    <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, productInCart(product))">Enlever tout</button>
-                </p>
-            </div>
+    <div *ngFor="let item of itemList" class="detailledCart">
+        <div>
+            <h4>
+                <span class="text--bold js-product-name">{{item.product.name}}</span>
+                <small class="product_price js-product-price">{{item.price.toFixed(2)}} €</small>
+                <small class="product_quantity js-product-quantity">{{item.quantity}} exemplaire</small><small class="product_quantity js-product-quantity" *ngIf="item.quantity > 1">s</small>
+            </h4>
+            <p>
+                <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(item.product, 1)">Acheter</button>
+                <button type="button" class="btn btn-primary js-btn-remove" (click)="removeProductFromCart(item.product, 1)">Enlever</button>
+                <button type="button" class="btn btn-primary js-btn-remove" (click)="removeProductFromCart(item.product, productInCart(item.product))">Enlever tout</button>
+            </p>
         </div>
     </div>
     <button type="button" class="btn btn-primary js-btn-empty" *ngIf="itemCount" (click)="emptyCart()">Tout vider</button>
 
     <h2>
-        <span class="text--bold js-product-total">TOTAL : {{(cart | async).itemsTotal.toFixed(2)}} €</span>
+        <span class="text--bold js-cart-total">TOTAL : {{(cart | async).itemsTotal.toFixed(2)}} €</span>
 
     </h2>
 </div>
