@@ -12,11 +12,13 @@ import { LocalStorageService, StorageService } from './services/storage.service'
 import { CartDetailledComponent } from './cart-detailled/cart-detailled.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { DetailledArticleComponent } from './detailled-article/detailled-article.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: StoreComponent },
   { path: 'cart', component: CartDetailledComponent },
+  { path: 'detail/:id', component: DetailledArticleComponent },
   { path: '**', component: StoreComponent }
 ];
 
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     CartComponent,
     StoreComponent,
     CartDetailledComponent,
-    LoginComponent
+    LoginComponent,
+    DetailledArticleComponent
   ],
   imports: [
     BrowserModule,
