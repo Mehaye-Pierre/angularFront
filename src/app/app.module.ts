@@ -10,10 +10,13 @@ import { ProductsDataService } from './services/products.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { LocalStorageService, StorageService } from './services/storage.service';
 import { CartDetailledComponent } from './cart-detailled/cart-detailled.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
-  { path: 'cart', component: CartDetailledComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', component: StoreComponent },
+  { path: 'cart', component: CartDetailledComponent },
   { path: '**', component: StoreComponent }
 ];
 
@@ -23,7 +26,8 @@ const appRoutes: Routes = [
     AppComponent,
     CartComponent,
     StoreComponent,
-    CartDetailledComponent
+    CartDetailledComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
+    AuthService,
     ProductsDataService,
     LocalStorageService,
     { provide: StorageService, useClass: LocalStorageService },
