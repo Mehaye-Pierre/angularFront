@@ -11,12 +11,18 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { LocalStorageService, StorageService } from './services/storage.service';
 import { CartDetailledComponent } from './cart-detailled/cart-detailled.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { StatusComponent } from './status/status.component';
 import { AuthService } from './services/auth.service';
 import { DetailledArticleComponent } from './detailled-article/detailled-article.component';
+import { EnsureAuthenticated } from './services/ensure-authenticated.service';
+import { LoginRedirect } from './services/login-redirect.service';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: '', component: StoreComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginRedirect] },
+  { path: 'register', component: RegisterComponent, canActivate: [LoginRedirect] },
+  { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
   { path: 'detail/:id', component: DetailledArticleComponent },
   { path: '**', component: StoreComponent }
@@ -30,6 +36,8 @@ const appRoutes: Routes = [
     StoreComponent,
     CartDetailledComponent,
     LoginComponent,
+    RegisterComponent,
+    StatusComponent,
     DetailledArticleComponent
   ],
   imports: [
@@ -40,6 +48,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
+    EnsureAuthenticated,
+    LoginRedirect,
     ProductsDataService,
     LocalStorageService,
     { provide: StorageService, useClass: LocalStorageService },

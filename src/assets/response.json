@@ -1,0 +1,9 @@
+{
+  "data": {
+    "admin": false,
+    "email": "michael@realpython.com",
+    "registered_on": "Sun, 13 Aug 2017 17:21:52 GMT",
+    "user_id": 4
+  },
+  "status": "success"
+}

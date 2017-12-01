@@ -1,12 +1,5 @@
-[
-	{
-        "id": "1",
-        "login": "bob",
-        "password": "test1"
-    },
-	{
-        "id": "2",
-        "login": "frank",
-        "password": "test2"
-    }   
-]
+{
+  "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1M…jozfQ.bPNQb3C98yyNe0LDyl1Bfkp0Btn15QyMxZnBoE9RQMI",
+  "message": "Successfully logged in.",
+  "status": "success"
+}
