@@ -1,10 +1,11 @@
-<div class="page-header">
-    <a routerLink="/login"><button class="button" >Se connecter</button></a>
-    <small class=" pull-right">
-        <h3>
-            Panier
-        </h3>
-        <div class="active"><a href="/cart">Total ({{itemCount}} objet<span *ngIf="itemCount > 1">s</span>) <span class="badge">{{(cart | async).itemsTotal.toFixed(2)}} €</span></a>
-</div>
+<small class=" pull-right">
+	<h3>Panier</h3>
+	<a href="/cart">
+      	Total ({{itemCount}} objet
+      	<span *ngIf="itemCount > 1">s</span>
+    	) <span class="badge">{{(cart | async).itemsTotal.toFixed(2)}} €</span>
+    </a>
 </small>
-</div>
+<small class=" pull-right">
+	<a routerLink="/login"><input type="image" src="/assets/login-icon.png" style="width:50px;" title="Se connecter" /></a>
+</small>
