@@ -25,7 +25,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
         console.log(user);
         if (user.status === 'success') {
           this.isLoggedIn = true;
-          this.message = 'Vous etes connecte, redirection dans 5 secondes.';
+          this.message = 'Vous etes connecte, retour a l\'accueil.';
         }
       }).catch(err => console.log(err));
     }
@@ -34,6 +34,6 @@ export class StatusComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.router.navigate(['']);
-    }, 5000);
+    }, 3000);
     }
 }
