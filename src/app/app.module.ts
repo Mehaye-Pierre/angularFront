@@ -17,6 +17,8 @@ import { AuthService } from './services/auth.service';
 import { DetailledArticleComponent } from './detailled-article/detailled-article.component';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+
 
 const appRoutes: Routes = [
   { path: '', component: StoreComponent },
@@ -44,7 +46,10 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'confirm'
+    })
   ],
   providers: [
     AuthService,

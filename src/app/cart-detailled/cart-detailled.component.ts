@@ -7,6 +7,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Observer } from 'rxjs/Observer';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 
 
 interface CurrentItem extends CartItem {
@@ -14,6 +15,8 @@ interface CurrentItem extends CartItem {
   quantity: number;
   price: number;
 }
+
+
 
 
 @Component({
@@ -26,6 +29,11 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
   public cart: Observable<ShoppingCart>;
   public itemCount: number;
   public itemList: CurrentItem[];
+  public title = 'Suppression';
+  public message = 'Voulez-vous vraiment vider la totalité du panier ?';
+  public confirmClicked = false;
+  public cancelClicked = false;
+
 
   private cartSubscription: Subscription;
 
