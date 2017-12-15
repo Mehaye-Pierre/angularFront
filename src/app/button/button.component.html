@@ -1,0 +1,8 @@
+<small class=" pull-right">
+	<span *ngIf="isLoggedIn">
+		<a routerLink="/logout"><input type="image" src="/assets/logout-icon.png" style="width:50px;" title="Se deconnecter" /></a>
+	</span>
+	<span *ngIf="!isLoggedIn">
+		<a routerLink="/login"><input type="image" src="/assets/login-icon.png" style="width:50px;" title="Se connecter" /></a>
+	</span>
+</small>
