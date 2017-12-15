@@ -1,0 +1,9 @@
+<div *ngIf="isLoggedIn; then logout else login"></div>
+<small class=" pull-right">
+	<ng-template #logout>
+		<a routerLink="/logout"><input type="image" src="/assets/logout-icon.png" style="width:50px;" title="Se deconnecter" /></a>
+	</ng-template>
+	<ng-template #login>
+		<a routerLink="/login"><input type="image" src="/assets/login-icon.png" style="width:50px;" title="Se connecter" /></a>
+	</ng-template>
+</small>

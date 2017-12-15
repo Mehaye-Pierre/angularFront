@@ -12,19 +12,22 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { LocalStorageService, StorageService } from './services/storage.service';
 import { CartDetailledComponent } from './cart-detailled/cart-detailled.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
+import { ButtonComponent } from './button/button.component';
 import { StatusComponent } from './status/status.component';
 import { AuthService } from './services/auth.service';
 import { DetailledArticleComponent } from './detailled-article/detailled-article.component';
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
-import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DeliveryComponent } from './delivery/delivery.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: StoreComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginRedirect] },
+  { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent, canActivate: [LoginRedirect] },
   { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
@@ -41,7 +44,9 @@ const appRoutes: Routes = [
     StoreComponent,
     CartDetailledComponent,
     LoginComponent,
+    LogoutComponent,
     RegisterComponent,
+    ButtonComponent,
     StatusComponent,
     DetailledArticleComponent,
     DeliveryComponent
