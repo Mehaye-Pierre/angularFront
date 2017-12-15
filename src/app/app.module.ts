@@ -1,3 +1,4 @@
+import { ClientDataService } from './services/clientData.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -18,6 +19,7 @@ import { DetailledArticleComponent } from './detailled-article/detailled-article
 import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 
 const appRoutes: Routes = [
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [LoginRedirect] },
   { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
+  { path: 'delivery', component: DeliveryComponent },
   { path: 'detail/:id', component: DetailledArticleComponent },
   { path: '**', component: StoreComponent }
 ];
@@ -40,7 +43,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     StatusComponent,
-    DetailledArticleComponent
+    DetailledArticleComponent,
+    DeliveryComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,7 @@ const appRoutes: Routes = [
     EnsureAuthenticated,
     LoginRedirect,
     ProductsDataService,
+    ClientDataService,
     LocalStorageService,
     { provide: StorageService, useClass: LocalStorageService },
     {

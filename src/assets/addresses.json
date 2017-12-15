@@ -1,0 +1,26 @@
+[{
+        "addressId": "1",
+        "cityName": "Avignon",
+        "name": "Maison de toto",
+        "streetNumber": "21B",
+        "streetName": "Rue du commandant Blaireau"
+
+    },
+    {
+        "addressId": "2",
+        "cityName": "Valence",
+        "name": "Immeuble tordu",
+        "streetNumber": "5",
+        "streetName": "Rue Emile Zola"
+
+
+    },
+    {
+        "addressId": "3",
+        "cityName": "Soyons",
+        "name": "Tour penchée",
+        "streetNumber": "1",
+        "streetName": "La grande montagne"
+
+    }
+]

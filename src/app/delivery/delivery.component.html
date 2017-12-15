@@ -1,0 +1,6 @@
+<label class="col-lg-2 control-label">Selectionnez votre adresse :</label>
+<div *ngFor="let address of addresses | async" class="address-container col-lg-10">
+    <div class="radio">
+        <label><input type="radio" name="optradio">{{address.cityName}} {{address.name}} {{address.streetNumber}} {{address.streetName}}</label>
+    </div>
+</div>

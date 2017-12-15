@@ -16,23 +16,12 @@
             </p>
         </div>
     </div>
-    <button 
-    class="btn btn-default" 
-    mwlConfirmationPopover
-    [title]="title" 
-    [message]="message" 
-    [confirmText]="confirmText"
-    [cancelText]="cancelText" 
-    (confirm)="confirmClicked = true; emptyCart()" 
-    (cancel)="cancelClicked = true"
-    confirmButtonType="danger"
-    cancelButtonType="default"
-    (click)="confirmClicked = false; cancelClicked = false"
-    *ngIf="itemCount"
-    >Tout vider
+    <button class="btn btn-default" mwlConfirmationPopover [title]="title" [message]="message" [confirmText]="confirmText" [cancelText]="cancelText" (confirm)="confirmClicked = true; emptyCart()" (cancel)="cancelClicked = true" confirmButtonType="danger"
+        cancelButtonType="default" (click)="confirmClicked = false; cancelClicked = false" *ngIf="itemCount">Tout vider
     </button>
     <h2>
         <span class="text--bold js-cart-total">TOTAL : {{(cart | async).itemsTotal.toFixed(2)}} €</span>
-
     </h2>
+
+    <button type="button" class="btn btn-primary" routerLink="../delivery">Payer</button>
 </div>
