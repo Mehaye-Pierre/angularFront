@@ -22,6 +22,7 @@ import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { LoginRedirect } from './services/login-redirect.service';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DeliveryComponent } from './delivery/delivery.component';
+import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 
 
 const appRoutes: Routes = [
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
   { path: 'delivery', component: DeliveryComponent },
+  { path: 'order-confirmed', component: OrderConfirmedComponent },
   { path: 'detail/:id', component: DetailledArticleComponent },
   { path: '**', component: StoreComponent }
 ];
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     ButtonComponent,
     StatusComponent,
     DetailledArticleComponent,
-    DeliveryComponent
+    DeliveryComponent,
+    OrderConfirmedComponent
   ],
   imports: [
     BrowserModule,
