@@ -21,6 +21,8 @@ import { LoginRedirect } from './services/login-redirect.service';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
+import { AddAddressComponent } from './add-address/add-address.component';
+import { BillingComponent } from './billing/billing.component';
 
 
 const appRoutes: Routes = [
@@ -30,8 +32,10 @@ const appRoutes: Routes = [
   { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
   { path: 'delivery', component: DeliveryComponent },
+  { path: 'billing', component: BillingComponent },
   { path: 'order-confirmed', component: OrderConfirmedComponent },
   { path: 'detail/:id', component: DetailledArticleComponent },
+  { path: 'add-address', component: AddAddressComponent },
   { path: '**', component: StoreComponent }
 ];
 
@@ -47,7 +51,9 @@ const appRoutes: Routes = [
     StatusComponent,
     DetailledArticleComponent,
     DeliveryComponent,
-    OrderConfirmedComponent
+    OrderConfirmedComponent,
+    AddAddressComponent,
+    BillingComponent
   ],
   imports: [
     BrowserModule,

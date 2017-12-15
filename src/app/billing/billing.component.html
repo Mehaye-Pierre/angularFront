@@ -1,5 +1,5 @@
 <div>
-    <label class="control-label">Selectionnez votre adresse de livraison:</label>
+    <label class="control-label">Selectionnez votre adresse de facturation:</label>
     <div *ngFor="let address of addresses | async" class="address-container">
         <div class="radio">
             <label><input type="radio" name="optradio">{{address.cityName}} {{address.name}} {{address.streetNumber}} {{address.streetName}}</label>
@@ -7,5 +7,5 @@
     </div>
 </div>
 <div><button type="button" class="btn btn-secondary" routerLink="../add-address">Ajouter une adresse</button></div>
-<button type="button" class="btn btn-primary" routerLink="../cart">Retour</button>
-<button type="button" class="btn btn-primary" routerLink="../billing">Suivant</button>
+<button type="button" class="btn btn-primary" routerLink="../delivery">Retour</button>
+<button type="button" class="btn btn-primary" routerLink="../order-confirmed">Payer</button>
