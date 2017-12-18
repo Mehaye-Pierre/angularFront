@@ -25,6 +25,8 @@ import { DeliveryComponent } from './delivery/delivery.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { BillingComponent } from './billing/billing.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 const appRoutes: Routes = [
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
   { path: 'delivery', component: DeliveryComponent },
+  { path: 'search-result', component: SearchResultComponent },
   { path: 'billing', component: BillingComponent },
   { path: 'order-confirmed', component: OrderConfirmedComponent },
   { path: 'detail/:id', component: DetailledArticleComponent },
@@ -58,12 +61,14 @@ const appRoutes: Routes = [
     DeliveryComponent,
     OrderConfirmedComponent,
     AddAddressComponent,
-    BillingComponent
+    BillingComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    NgxPaginationModule,
     RouterModule.forRoot(appRoutes),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'confirm'
