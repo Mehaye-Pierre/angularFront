@@ -16,7 +16,9 @@ export class ButtonComponent implements OnInit {
   isLoggedIn;
   subscription: any;
 
-  constructor(private router: Router, private auth: AuthService, private ens: EnsureAuthenticated) {}
+  constructor(private router: Router,
+    private auth: AuthService,
+    private ens: EnsureAuthenticated) {}
 
   ngOnInit(): void {
 

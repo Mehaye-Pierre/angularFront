@@ -23,5 +23,5 @@
         <span class="text--bold js-cart-total">TOTAL : {{(cart | async).itemsTotal.toFixed(2)}} €</span>
     </h2>
 
-    <button type="button" class="btn btn-primary" routerLink="../delivery">Payer</button>
+    <button type="button" class="btn btn-primary" *ngIf="(cart | async).itemsTotal > 0" routerLink="../delivery">Payer</button>
 </div>

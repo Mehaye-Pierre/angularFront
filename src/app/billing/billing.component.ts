@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 export class BillingComponent implements OnInit {
   public addresses: Observable<Address[]>;
 
-  public constructor(private clientDataService: ClientDataService, private auth: AuthService, private router: Router) { }
+  public constructor(private clientDataService: ClientDataService,
+    private auth: AuthService,
+    private router: Router) { }
 
  public ngOnInit(): void {
   const token = localStorage.getItem('token');

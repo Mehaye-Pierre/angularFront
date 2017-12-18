@@ -10,7 +10,9 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 export class OrderConfirmedComponent implements OnInit {
 
-  public constructor(private auth: AuthService, private router: Router,private shoppingCartService: ShoppingCartService) { }
+  public constructor(private auth: AuthService,
+    private router: Router,
+    private shoppingCartService: ShoppingCartService) { }
   message = 'Oops';
 
 

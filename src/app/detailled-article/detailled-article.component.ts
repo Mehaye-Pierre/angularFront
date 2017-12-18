@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Observer } from 'rxjs/Observer';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detailled-article',
@@ -20,7 +21,8 @@ export class DetailledArticleComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsDataService,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,10 @@ export class DetailledArticleComponent implements OnInit {
                       });
       sub.unsubscribe();
     });
+  }
+
+  public goBack() {
+    this.location.back();
   }
 
 }
