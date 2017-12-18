@@ -1,8 +1,8 @@
 <div>
     <label class="control-label">Selectionnez votre adresse de facturation:</label>
-    <div *ngFor="let address of addresses | async" class="address-container">
+    <div *ngFor="let address of addresses | async; let i = index" class="address-container">
         <div class="radio">
-            <label><input type="radio" name="optradio ">{{address.cityName}} {{address.name}} {{address.streetNumber}} {{address.streetName}}</label>
+            <label><input type="radio" name="optradio" [checked]="i == 0">{{address.cityName}} {{address.name}} {{address.streetNumber}} {{address.streetName}}</label>
         </div>
     </div>
 </div>

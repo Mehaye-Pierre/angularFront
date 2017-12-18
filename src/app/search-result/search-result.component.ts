@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsDataService } from '../services/products.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../models/product.model';
 import { Observer } from 'rxjs/Observer';
@@ -14,6 +14,11 @@ import { Observer } from 'rxjs/Observer';
 export class SearchResultComponent implements OnInit {
 
   public products: Observable<Product[]>;
+
+  public labels: any = {
+    previousLabel: 'Précedent',
+    nextLabel: 'Suivant'
+};
 
   constructor(private productsService: ProductsDataService,
     private shoppingCartService: ShoppingCartService) { }

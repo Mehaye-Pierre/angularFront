@@ -11,4 +11,6 @@
     </li>
 </ul>
 
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<div>
+    <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="p = $event"></pagination-controls>
+</div>
