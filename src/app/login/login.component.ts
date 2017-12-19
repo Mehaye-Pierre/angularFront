@@ -23,7 +23,6 @@ export class LoginComponent {
   url: string = this.route.snapshot.queryParams['returnUrl'];
 
   onLogin(): void {
-    this.auth.login(this.user).then((data: any) => console.log(data)).catch(err => console.log(err));
     this.auth.login(this.user).then(user => {
       localStorage.setItem('token', user.auth_token);
       this.router.navigate(['/status'], { queryParams: { returnUrl: this.url }});

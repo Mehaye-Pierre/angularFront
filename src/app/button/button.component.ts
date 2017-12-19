@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterStateSnapshot } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router, RouterStateSnapshot, NavigationEnd } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Client } from '../models/client';
@@ -15,15 +14,19 @@ import { EnsureAuthenticated } from '../services/ensure-authenticated.service';
 export class ButtonComponent implements OnInit {
 
   isLoggedIn;
+  url;
   subscription: any;
 
   constructor(
     private router: Router,
     private auth: AuthService,
-    private ens: EnsureAuthenticated,
-    private location: Location) {}
-
-  url: string = this.location.path();
+    private ens: EnsureAuthenticated) {
+      router.events.subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          this.url = val.url;
+        }
+      });
+    }
 
   ngOnInit(): void {
     this.subscription = this.ens.connected.subscribe(status => {
