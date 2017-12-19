@@ -1,5 +1,5 @@
 <small class=" pull-right">
-	<h3>Panier</h3>
+	<h3><a href="/cart">Panier</a></h3>
 	<a href="/cart">
       	Total ({{itemCount}} objet<span *ngIf="itemCount > 1">s</span>
     	) <span class="badge">{{(cart | async).itemsTotal.toFixed(2)}} €</span>

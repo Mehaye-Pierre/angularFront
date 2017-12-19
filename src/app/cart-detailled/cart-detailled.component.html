@@ -8,6 +8,7 @@
                 <span class="text--bold js-product-name">{{item.product.name}}</span>
                 <small class="product_price js-product-price">{{item.price.toFixed(2)}} €</small>
                 <small class="product_quantity js-product-quantity">{{item.quantity}} exemplaire</small><small class="product_quantity js-product-quantity" *ngIf="item.quantity > 1">s</small>
+                <small class="product_total_price js-product-total-price">Total : {{(item.quantity*item.price).toFixed(2)}} €</small>
             </h4>
             <p>
                 <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(item.product, 1)">Acheter</button>
