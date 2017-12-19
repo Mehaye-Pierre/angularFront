@@ -1,3 +1,5 @@
 export class Client {
-  constructor(login?: string, password?: string, mail?: string) {}
+  public login: string;
+  public password: string;
+  public mail: string;
 }
