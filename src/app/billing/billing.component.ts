@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Address } from '../models/address.model';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-billing',
@@ -17,6 +17,8 @@ export class BillingComponent implements OnInit {
     private auth: AuthService,
     private router: Router) { }
 
+  url: string = this.router.routerState.snapshot.url;
+
  public ngOnInit(): void {
   const token = localStorage.getItem('token');
       if (token) {
@@ -25,11 +27,11 @@ export class BillingComponent implements OnInit {
           if (user.status === 'success') {
             this.addresses = this.clientDataService.getAddress();
           }else {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'], { queryParams: { returnUrl: this.url }});
           }
         }).catch(err => console.log(err));
       }else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], { queryParams: { returnUrl: this.url }});
       }
     }
 

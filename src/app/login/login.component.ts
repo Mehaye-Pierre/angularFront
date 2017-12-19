@@ -1,6 +1,6 @@
 import { EnsureAuthenticated } from './../services/ensure-authenticated.service';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Client } from '../models/client';
@@ -13,15 +13,20 @@ import { Client } from '../models/client';
 
 export class LoginComponent {
 
-  user: Client = new Client();
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private ens: EnsureAuthenticated,
+    private route: ActivatedRoute) {}
 
-  constructor(private router: Router, private auth: AuthService, private ens: EnsureAuthenticated) {}
+  user: Client = new Client();
+  url: string = this.route.snapshot.queryParams['returnUrl'];
 
   onLogin(): void {
-    // this.auth.login(this.user).then((data: any) => console.log(data)).catch(err => console.log(err));
+    this.auth.login(this.user).then((data: any) => console.log(data)).catch(err => console.log(err));
     this.auth.login(this.user).then(user => {
       localStorage.setItem('token', user.auth_token);
-      this.router.navigateByUrl('/status');
+      this.router.navigate(['/status'], { queryParams: { returnUrl: this.url }});
       this.ens.changeState(true);
     }).catch(err => console.log(err));
 

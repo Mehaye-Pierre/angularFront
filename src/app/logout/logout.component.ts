@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Observable } from 'rxjs/Observable';
@@ -12,23 +12,38 @@ import { EnsureAuthenticated } from '../services/ensure-authenticated.service';
   styleUrls: ['./logout.component.css']
 })
 
-export class LogoutComponent implements OnInit, AfterViewInit {
+export class LogoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   message = 'Comment vous voyez �a?';
+  timer;
 
-  constructor(private router: Router, private auth: AuthService,
-              private shoppingCartService: ShoppingCartService, private ens: EnsureAuthenticated) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private shoppingCartService: ShoppingCartService,
+    private ens: EnsureAuthenticated,
+    private route: ActivatedRoute) {}
+
+  url: string = this.route.snapshot.queryParams['returnUrl'];
 
   ngOnInit(): void {
     localStorage.removeItem('token');
     this.shoppingCartService.empty();
-    this.message = 'Vous etes deconnecte, retour a l\'accueil';
+    this.message = 'Vous etes deconnecte, retour en arriere';
     this.ens.changeState(false);
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.router.navigate(['']);
+    this.timer = setTimeout(() => {
+      if (this.url) {
+        this.router.navigateByUrl(this.url);
+      } else {
+        this.router.navigateByUrl('');
+      }
     }, 3000);
-    }
+  }
+
+  ngOnDestroy(): void {
+    clearTimeout(this.timer);
+  }
 }

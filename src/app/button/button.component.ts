@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
+import { Location } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Client } from '../models/client';
@@ -16,22 +17,23 @@ export class ButtonComponent implements OnInit {
   isLoggedIn;
   subscription: any;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private auth: AuthService,
-    private ens: EnsureAuthenticated) {}
+    private ens: EnsureAuthenticated,
+    private location: Location) {}
+
+  url: string = this.location.path();
 
   ngOnInit(): void {
-
     this.subscription = this.ens.connected.subscribe(status => {
       this.isLoggedIn = status;
-  });
+    });
     const token = localStorage.getItem('token');
     if (token) {
       this.isLoggedIn =  true;
-      console.log('true');
     } else {
       this.isLoggedIn = false;
-      console.log('false');
     }
   }
 }
