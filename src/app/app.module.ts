@@ -27,6 +27,7 @@ import { AddAddressComponent } from './add-address/add-address.component';
 import { BillingComponent } from './billing/billing.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminComponent } from './admin/admin.component';
 
 
 const appRoutes: Routes = [
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
   { path: 'delivery', component: DeliveryComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'search-result', component: SearchResultComponent },
   { path: 'billing', component: BillingComponent },
   { path: 'order-confirmed', component: OrderConfirmedComponent },
@@ -62,7 +64,8 @@ const appRoutes: Routes = [
     OrderConfirmedComponent,
     AddAddressComponent,
     BillingComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
