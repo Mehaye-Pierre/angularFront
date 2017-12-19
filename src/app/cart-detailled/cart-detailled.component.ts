@@ -33,6 +33,8 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
   public message = 'Voulez-vous vraiment vider la totalité du panier ?';
   public confirmClicked = false;
   public cancelClicked = false;
+  public confirmText = 'Oui';
+  public cancelText = 'Annuler';
 
 
   private cartSubscription: Subscription;
