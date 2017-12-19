@@ -18,7 +18,6 @@ export class RegisterComponent {
   constructor(private router: Router, private auth: AuthService, private ens: EnsureAuthenticated) {}
 
   onRegister(): void {
-    // this.auth.register(this.user).then((data: any) => console.log(data)).catch(err => console.log(err));
     this.auth.register(this.user).then(user => {
       localStorage.setItem('token', user.auth_token);
       this.router.navigateByUrl('/status');
