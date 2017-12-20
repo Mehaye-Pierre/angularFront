@@ -11,7 +11,10 @@ import { Observer } from 'rxjs/Observer';
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.css']
 })
+
 export class SearchResultComponent implements OnInit {
+
+  public sortChoice = 'name';
 
   public products: Observable<Product[]>;
 
@@ -44,15 +47,11 @@ export class SearchResultComponent implements OnInit {
   }
 
   public sortByName() {
-    // TODO
+    this.sortChoice = 'name';
   }
 
   public sortByPrice() {
-    // TODO
-  }
-
-  public sortByCategory() {
-    // TODO
+    this.sortChoice = 'price';
   }
 
   ngOnInit() {

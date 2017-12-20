@@ -7,16 +7,12 @@
             <li class="list-group-item">
                 <a (click)="sortByPrice()">Trier par prix</a>
             </li>
-            <li class="list-group-item">
-                <a (click)="sortByCategory()">Trier par catégorie</a>
-            </li>
         </ul>
     </div>
-
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-4 col-md-offset-1">
         <div class="text-center">
             <ul>
-                <div *ngFor="let product of products | async | paginate: { itemsPerPage: 2, currentPage: p }">
+                <div *ngFor="let product of products | async | sortProducts: sortChoice | paginate: { itemsPerPage: 2, currentPage: p }">
                     <a routerLink="/detail/{{product.id}}">
           {{product.name}}
       </a> {{product.price}} €

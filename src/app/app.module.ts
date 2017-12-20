@@ -1,5 +1,5 @@
 import { ClientDataService } from './services/clientData.service';
-import { NgModule } from '@angular/core';
+import { NgModule, PipeTransform } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,6 +28,7 @@ import { BillingComponent } from './billing/billing.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin/admin.component';
+import { SortProducts } from './pipes/sort-products.pipe';
 
 
 const appRoutes: Routes = [
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
     AddAddressComponent,
     BillingComponent,
     SearchResultComponent,
-    AdminComponent
+    AdminComponent,
+    SortProducts
   ],
   imports: [
     BrowserModule,
