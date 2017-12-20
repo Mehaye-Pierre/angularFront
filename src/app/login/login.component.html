@@ -6,10 +6,12 @@
      <div class="form-group">
        <label for="login">Nom d'utilisateur</label>
        <input type="text" class="form-control" id="login" placeholder="Ecrire nom d'utilisateur" [(ngModel)]="user.login" name="login" required>
+       <span *ngIf="emptyLogin"><font color="red">Veuillez rentrer un nom d'utilisateur</font></span>
      </div>
      <div class="form-group">
        <label for="password">Mot de passe</label>
        <input type="password" class="form-control" id="password" placeholder="Ecrire mot de passe" [(ngModel)]="user.password" name="password" required>
+       <span *ngIf="emptyPassword"><font color="red">Veuillez rentrer un mot de passe</font></span>
      </div>
      <button type="submit" class="btn btn-default">Se connecter</button>
      <a [routerLink]="['../register']" [queryParams]="{ returnUrl : url }"><button class="btn btn-success" >S'enregister</button></a>

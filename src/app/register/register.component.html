@@ -6,18 +6,23 @@
      <div class="form-group">
        <label for="login">Nom d'utilisateur</label>
        <input type="text" class="form-control" id="login" placeholder="Ecrire nom d'utilisateur" [(ngModel)]="user.login" name="login" required>
+       <span *ngIf="emptyLogin"><font color="red">Veuillez rentrer un nom d'utilisateur</font></span>
      </div>
      <div class="form-group">
        <label for="password">Mot de passe</label>
        <input type="password" class="form-control" id="password" placeholder="Ecrire mot de passe" [(ngModel)]="user.password" name="password" required>
+       <span *ngIf="emptyPassword1"><font color="red">Veuillez rentrer un mot de passe</font></span>
      </div>
      <div class="form-group">
        <label for="password">Mot de passe</label>
        <input type="password" class="form-control" id="password" placeholder="Confirmer mot de passe" [(ngModel)]="password" name="password" required>
+       <span *ngIf="emptyPassword2"><font color="red">Veuillez confirmer le mot de passe</font></span>
+       <span *ngIf="differentPasswords"><font color="red">Les mots de passe sont differents</font></span>
      </div>
      <div class="form-group">
        <label for="mail">Addresse mail</label>
        <input type="text" class="form-control" id="mail" placeholder="Ecrire addresse mail" [(ngModel)]="user.mail" name="mail" required>
+       <span *ngIf="emptyMail"><font color="red">Veuillez rentrer une addresse mail</font></span>
      </div>
      <button type="submit" class="btn btn-default">S'enregistrer</button>
     </form>

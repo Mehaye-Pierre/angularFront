@@ -21,15 +21,19 @@ export class LoginComponent {
 
   user: Client = new Client();
   url: string = this.route.snapshot.queryParams['returnUrl'];
+  emptyLogin = false;
+  emptyPassword = false;
 
   onLogin(): void {
     let test = true;
+    this.emptyLogin = false;
+    this.emptyPassword = false;
     if (!this.user.login) {
-      console.log('login vide');
+      this.emptyLogin = true;
       test = false;
     }
     if (!this.user.password) {
-      console.log('password vide');
+      this.emptyPassword = true;
       test = false;
     }
     if (test) {
