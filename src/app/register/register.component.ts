@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Client } from '../models/client';
 import { EnsureAuthenticated } from '../services/ensure-authenticated.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,11 @@ export class RegisterComponent {
   emptyMail = false;
   differentPasswords = false;
 
-  constructor(private router: Router, private auth: AuthService, private ens: EnsureAuthenticated, private route: ActivatedRoute) {}
+  constructor(private router: Router,
+    private auth: AuthService,
+    private ens: EnsureAuthenticated,
+    private route: ActivatedRoute,
+    private location: Location) {}
 
   url: string = this.route.snapshot.queryParams['returnUrl'];
 
@@ -58,5 +63,9 @@ export class RegisterComponent {
         this.ens.changeState(true);
       }).catch(err => console.log(err));
     }
+  }
+
+  public goBack() {
+    this.location.back();
   }
 }
