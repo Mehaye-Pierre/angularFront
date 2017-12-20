@@ -43,6 +43,18 @@ export class SearchResultComponent implements OnInit {
     });
   }
 
+  public sortByName() {
+    // TODO
+  }
+
+  public sortByPrice() {
+    // TODO
+  }
+
+  public sortByCategory() {
+    // TODO
+  }
+
   ngOnInit() {
     this.products = this.productsService.all();
   }
