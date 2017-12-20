@@ -14,7 +14,7 @@ import { Observer } from 'rxjs/Observer';
 
 export class SearchResultComponent implements OnInit {
 
-  public sortChoice = 'name';
+  public sortChoice = 'name increasing';
 
   public products: Observable<Product[]>;
 
@@ -46,12 +46,20 @@ export class SearchResultComponent implements OnInit {
     });
   }
 
-  public sortByName() {
-    this.sortChoice = 'name';
+  public sortByNameIncreasing() {
+    this.sortChoice = 'name increasing';
   }
 
-  public sortByPrice() {
-    this.sortChoice = 'price';
+  public sortByPriceIncreasing() {
+    this.sortChoice = 'price increasing';
+  }
+
+  public sortByNameDecreasing() {
+    this.sortChoice = 'name decreasing';
+  }
+
+  public sortByPriceDecreasing() {
+    this.sortChoice = 'price decreasing';
   }
 
   ngOnInit() {
