@@ -15,10 +15,11 @@
             </li>
         </ul>
     </div>
+    {{search}}
     <div class="col-md-4 col-md-offset-1">
         <div class="text-center">
             <ul>
-                <div *ngFor="let product of products | async | sortProducts: sortChoice | paginate: { itemsPerPage: 6, currentPage: p }">
+                <div *ngFor="let product of products | async | filterProducts: search | sortProducts: sortChoice | paginate: { itemsPerPage: 6, currentPage: p }">
                     <a routerLink="/detail/{{product.id}}">
           {{product.name}}
       </a> {{product.price}} €

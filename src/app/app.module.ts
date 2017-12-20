@@ -29,6 +29,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin/admin.component';
 import { SortProducts } from './pipes/sort-products.pipe';
+import { FilterProducts } from './pipes/filter-products.pipe';
 
 
 const appRoutes: Routes = [
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   { path: 'billing', component: BillingComponent },
   { path: 'order-confirmed', component: OrderConfirmedComponent },
   { path: 'detail/:id', component: DetailledArticleComponent },
+  { path: 'search-result/:search', component: SearchResultComponent },
   { path: 'add-address', component: AddAddressComponent },
   { path: '**', component: StoreComponent }
 ];
@@ -67,7 +69,8 @@ const appRoutes: Routes = [
     BillingComponent,
     SearchResultComponent,
     AdminComponent,
-    SortProducts
+    SortProducts,
+    FilterProducts
   ],
   imports: [
     BrowserModule,

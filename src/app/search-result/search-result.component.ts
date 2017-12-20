@@ -5,6 +5,7 @@ import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../models/product.model';
 import { Observer } from 'rxjs/Observer';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
@@ -15,6 +16,7 @@ import { Observer } from 'rxjs/Observer';
 export class SearchResultComponent implements OnInit {
 
   public sortChoice = 'name increasing';
+  public search = '';
 
   public products: Observable<Product[]>;
 
@@ -24,7 +26,8 @@ export class SearchResultComponent implements OnInit {
 };
 
   constructor(private productsService: ProductsDataService,
-    private shoppingCartService: ShoppingCartService) { }
+    private shoppingCartService: ShoppingCartService,
+    private route: ActivatedRoute) { }
 
   public addProductToCart(product: Product, quantity: number): void {
     this.shoppingCartService.addItem(product, quantity);
@@ -64,6 +67,7 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
     this.products = this.productsService.all();
+    this.search = this.route.snapshot.paramMap.get('search');
   }
 
 }

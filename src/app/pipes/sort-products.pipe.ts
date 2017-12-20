@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class SortProducts implements PipeTransform {
     transform(array: Array<Product>, args: string): Array<Product> {
-        if (array !== null) {
+        if (array !== null && array !== undefined) {
             array.sort((a: Product, b: Product) => {
                 if (args === 'price increasing') {
                     if (a.price < b.price) {
