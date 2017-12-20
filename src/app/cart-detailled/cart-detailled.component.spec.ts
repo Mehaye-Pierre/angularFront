@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { HttpModule } from '@angular/http';
+import { ProductsDataService } from '../services/products.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { StorageService, LocalStorageService } from '../services/storage.service';
 import { CartDetailledComponent } from './cart-detailled.component';
 
 describe('CartDetailledComponent', () => {
@@ -8,7 +12,9 @@ describe('CartDetailledComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartDetailledComponent ]
+      imports: [ConfirmationPopoverModule, HttpModule],
+      declarations: [ CartDetailledComponent ],
+      providers: [ProductsDataService, ShoppingCartService, {provide: StorageService, useClass: LocalStorageService}]
     })
     .compileComponents();
   }));

@@ -30,4 +30,7 @@ export class AddAddressComponent implements OnInit {
     this.location.back();
   }
 
+  onSubmitting() {
+
+  }
 }

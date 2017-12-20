@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ProductsDataService } from './../services/products.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpModule } from '@angular/http';
+import { StorageService, LocalStorageService } from '../services/storage.service';
 import { DetailledArticleComponent } from './detailled-article.component';
 
 describe('DetailledArticleComponent', () => {
@@ -8,7 +12,9 @@ describe('DetailledArticleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailledArticleComponent ]
+      imports: [RouterTestingModule, HttpModule],
+      declarations: [ DetailledArticleComponent],
+      providers: [ProductsDataService, ShoppingCartService, {provide: StorageService, useClass: LocalStorageService}]
     })
     .compileComponents();
   }));

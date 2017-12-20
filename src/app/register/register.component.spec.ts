@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { AuthService } from '../services/auth.service';
+import { EnsureAuthenticated } from '../services/ensure-authenticated.service';
 import { RegisterComponent } from './register.component';
 
 describe('RegisterComponent', () => {
@@ -8,7 +12,9 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+      imports: [RouterTestingModule, FormsModule, HttpModule],
+      declarations: [ RegisterComponent ],
+      providers: [AuthService, EnsureAuthenticated]
     })
     .compileComponents();
   }));

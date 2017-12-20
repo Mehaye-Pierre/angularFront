@@ -1,4 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { ClientDataService } from '../services/clientData.service';
+import { AuthService } from '../services/auth.service';
+import { HttpModule } from '@angular/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AdminComponent } from './admin.component';
 
@@ -8,7 +13,9 @@ describe('AdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminComponent ]
+      imports: [FormsModule, HttpModule, RouterTestingModule],
+      declarations: [ AdminComponent ],
+      providers: [ClientDataService, AuthService]
     })
     .compileComponents();
   }));
