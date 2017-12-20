@@ -10,7 +10,6 @@ export class AppComponent {
 
   constructor(private router: Router) { }
   search(req: string) {
-    console.log('done');
     this.router.navigateByUrl('/search-result/' + req);
     window.location.reload();
   }

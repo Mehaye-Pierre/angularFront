@@ -11,13 +11,14 @@
         <div class="text-center">
             <ul class="product-list">
                 <div *ngFor="let product of products | async" class="product-container">
+                    <img src="/assets/book.jpg" alt=" ... " class="img-thumbnail " routerLink="/detail/{{product.id}}">
                     <a routerLink="/detail/{{product.id}}">
             {{product.name}}
         </a> {{product.price}} €
                     <p>
-                        <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(product, 1)">Acheter</button>
-                        <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, 1)">Enlever</button>
-                        <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, productInCart(product))">Enlever tout</button>
+                        <button type="button " class="btn btn-primary js-btn-add " (click)="addProductToCart(product, 1) ">Acheter</button>
+                        <button type="button " class="btn btn-primary js-btn-remove " *ngIf="productInCart(product) | async " (click)="removeProductFromCart(product, 1) ">Enlever</button>
+                        <button type="button " class="btn btn-primary js-btn-remove " *ngIf="productInCart(product) | async " (click)="removeProductFromCart(product, productInCart(product)) ">Enlever tout</button>
                     </p>
                     <br>
                 </div>
