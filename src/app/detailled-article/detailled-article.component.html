@@ -1,10 +1,10 @@
-<div *ngIf="product">
+<div *ngIf="products">
     <div class="row">
         <div class="col-md-4 col-md-offset-3 ">
             <div class="text-center">
                 <h2>
-                    <span class="text--bold js-product-name">{{product.name}}</span>
-                    <small class="product_price js-product-price">{{product.price.toFixed(2)}} €</small>
+                    <span class="text--bold js-product-name">{{products.name}}</span>
+                    <small class="product_price js-product-price">{{products.price.toFixed(2)}} €</small>
                 </h2>
             </div>
         </div>
@@ -16,15 +16,15 @@
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-3 ">
-            <p class="js-product-desc">{{product.description}}</p>
+            <p class="js-product-desc">{{products.description}}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-3 ">
             <p>
-                <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(product, 1)">Acheter</button>
-                <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, 1)">Enlever</button>
-                <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, productInCart(product))">Enlever tout</button>
+                <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(products, 1)">Acheter</button>
+                <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(products)" (click)="removeProductFromCart(products, 1)">Enlever</button>
+                <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(products)" (click)="removeProductFromCart(products, productInCart(products))">Enlever tout</button>
                 <button type="cancel" class="btn btn-default" (click)="goBack()">Retour</button>
             </p>
         </div>

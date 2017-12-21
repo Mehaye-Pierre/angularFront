@@ -1,3 +1,4 @@
+import { ProductsResponse } from './../services/products.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ShoppingCart } from '../models/shopping-cart.model';
@@ -11,7 +12,7 @@ import { Observer } from 'rxjs/Observer';
   templateUrl: './store.component.html'
 })
 export class StoreComponent implements OnInit {
-  public products: Observable<Product[]>;
+  public products: Product[] = [];
 
   public constructor(private productsService: ProductsDataService,
                      private shoppingCartService: ShoppingCartService) {
@@ -30,7 +31,7 @@ export class StoreComponent implements OnInit {
       const sub = this.shoppingCartService
                       .get()
                       .subscribe((cart) => {
-                        obs.next(cart.items.some((i) => i.productId === product.id));
+                        obs.next(cart.items.some((i) => i.productId === product.itemId));
                         obs.complete();
                       });
       sub.unsubscribe();
@@ -38,6 +39,8 @@ export class StoreComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.products = this.productsService.all();
+    this.productsService.all().subscribe( res => {
+      this.products = res.products;
+    });
   }
 }

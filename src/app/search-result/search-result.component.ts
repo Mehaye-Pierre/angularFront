@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsDataService } from '../services/products.service';
+import { ProductsDataService, ProductsResponse } from '../services/products.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +18,7 @@ export class SearchResultComponent implements OnInit {
   public sortChoice = 'name increasing';
   public search = '';
 
-  public products: Observable<Product[]>;
+  public products: Observable<ProductsResponse>;
 
   public labels: any = {
     previousLabel: 'Précedent',
@@ -42,7 +42,7 @@ export class SearchResultComponent implements OnInit {
       const sub = this.shoppingCartService
         .get()
         .subscribe((cart) => {
-          obs.next(cart.items.some((i) => i.productId === product.id));
+          obs.next(cart.items.some((i) => i.productId === product.itemId));
           obs.complete();
         });
       sub.unsubscribe();

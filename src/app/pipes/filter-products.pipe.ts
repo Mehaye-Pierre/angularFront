@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class FilterProducts implements PipeTransform {
     transform(array: Array<Product>, args: string): Array<Product> {
-        if (array !== null) {
+        if (array !== null && array !== undefined) {
             if (args === null) {
                 return array;
             }else {

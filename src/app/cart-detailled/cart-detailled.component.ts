@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { Product } from '../models/product.model';
 import { CartItem } from '../models/cart-item.model';
 import { ShoppingCart } from '../models/shopping-cart.model';
-import { ProductsDataService } from '../services/products.service';
+import { ProductsDataService, ProductsResponse } from '../services/products.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -25,7 +25,7 @@ interface CurrentItem extends CartItem {
   styleUrls: ['./cart-detailled.component.css']
 })
 export class CartDetailledComponent implements OnInit, OnDestroy {
-  public products: Observable<Product[]>;
+  public products: Observable<ProductsResponse>;
   public cart: Observable<ShoppingCart>;
   public itemCount: number;
   public itemList: CurrentItem[];
@@ -54,7 +54,7 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
       this.productsService.all().subscribe((products) => {
         this.itemList = cart.items
         .map((item) => {
-           const product = products.find((p) => p.id === item.productId);
+           const product = products.products.find((p) => p.itemId === item.productId);
            return {
              ...item,
              product,
@@ -71,7 +71,7 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
       const sub = this.shoppingCartService
                       .get()
                       .subscribe((cart) => {
-                        obs.next(cart.items.some((i) => i.productId === product.id));
+                        obs.next(cart.items.some((i) => i.productId === product.itemId));
                         obs.complete();
                       });
       sub.unsubscribe();

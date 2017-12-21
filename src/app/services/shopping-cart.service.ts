@@ -7,7 +7,6 @@ import { Product } from '../models/product.model';
 import { ShoppingCart } from '../models/shopping-cart.model';
 import { ProductsDataService } from '../services/products.service';
 
-const CART_KEY = 'cart';
 
 @Injectable()
 export class ShoppingCartService {
@@ -19,7 +18,7 @@ export class ShoppingCartService {
   public constructor(private storageService: StorageService,
                      private productService: ProductsDataService) {
     this.storage = this.storageService.get();
-    this.productService.all().subscribe((products) => this.products = products);
+    this.productService.all().subscribe((products) => this.products = products.products);
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
       this.subscribers.push(observer);
       observer.next(this.retrieve());
@@ -35,10 +34,10 @@ export class ShoppingCartService {
 
   public addItem(product: Product, quantity: number): void {
     const cart = this.retrieve();
-    let item = cart.items.find((p) => p.productId === product.id);
+    let item = cart.items.find((p) => p.productId === product.itemId);
     if (item === undefined) {
       item = new CartItem();
-      item.productId = product.id;
+      item.productId = product.itemId;
       cart.items.push(item);
     }
 
@@ -59,13 +58,13 @@ export class ShoppingCartService {
 
   private calculateCart(cart: ShoppingCart): void {
     cart.itemsTotal = cart.items
-                          .map((item) => item.quantity * this.products.find((p) => p.id === item.productId).price)
+                          .map((item) => item.quantity * this.products.find((p) => p.itemId === item.productId).price)
                           .reduce((previous, current) => previous + current, 0);
   }
 
   private retrieve(): ShoppingCart {
     const cart = new ShoppingCart();
-    const storedCart = this.storage.getItem(CART_KEY);
+    const storedCart = this.storage.getItem('cart');
     if (storedCart) {
       cart.updateFrom(JSON.parse(storedCart));
     }
@@ -74,7 +73,7 @@ export class ShoppingCartService {
   }
 
   private save(cart: ShoppingCart): void {
-    this.storage.setItem(CART_KEY, JSON.stringify(cart));
+    this.storage.setItem('cart', JSON.stringify(cart));
   }
 
   private dispatch(cart: ShoppingCart): void {
@@ -83,7 +82,6 @@ export class ShoppingCartService {
           try {
             sub.next(cart);
           } catch (e) {
-            // we want all subscribers to get the update even if one errors.
           }
         });
   }

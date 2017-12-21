@@ -14,9 +14,7 @@ import { Location } from '@angular/common';
 })
 export class DetailledArticleComponent implements OnInit {
 
-  public products: Observable<Product[]>;
-
-  @Input() product: Product;
+  public products: Product;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,28 +28,25 @@ export class DetailledArticleComponent implements OnInit {
   }
 
   getArticle(): void {
-    const id: String = this.route.snapshot.paramMap.get('id');
-    this.products = this.productsService.all();
-    this.productsService.all().subscribe((products) => {
-      this.product = products.find((p) => p.id === id);
-      });
+    const id: string = this.route.snapshot.paramMap.get('id');
+    this.productsService.get(id).subscribe(res => this.products = res.product);
 
   }
 
-  public addProductToCart(product: Product): void {
-    this.shoppingCartService.addItem(product, 1);
+  public addProductToCart(): void {
+    this.shoppingCartService.addItem(this.products, 1);
   }
 
-  public removeProductFromCart(product: Product, quantity: number): void {
-    this.shoppingCartService.addItem(product, -quantity);
+  public removeProductFromCart(quantity: number): void {
+    this.shoppingCartService.addItem(this.products, -quantity);
   }
 
-  public productInCart(product: Product): boolean {
+  public productInCart(): boolean {
     return Observable.create((obs: Observer<boolean>) => {
       const sub = this.shoppingCartService
                       .get()
                       .subscribe((cart) => {
-                        obs.next(cart.items.some((i) => i.productId === product.id));
+                        obs.next(cart.items.some((i) => i.productId === this.products.itemId));
                         obs.complete();
                       });
       sub.unsubscribe();

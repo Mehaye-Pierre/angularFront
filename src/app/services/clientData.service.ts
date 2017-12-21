@@ -1,3 +1,4 @@
+import { environment as env} from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Address } from '../models/address.model';
@@ -11,7 +12,7 @@ export class ClientDataService {
 
     public getAddress(): Observable<Address[]> {
         return this.http
-        .get('./assets/addresses.json')
+        .get(`${env.appUrl}/addresses?requestid=1`)
         .map((response) => response.json()
                                    .map((address) => {
                                      const model = new Address();

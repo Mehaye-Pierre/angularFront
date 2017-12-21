@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  appUrl: 'ejb-web',
+  serverUrl: 'http://localhost:8080'
 };
+

@@ -25,9 +25,9 @@ export class SortProducts implements PipeTransform {
                         return 0;
                     }
                 } else if (args === 'id') {
-                    if (a.id < b.id) {
+                    if (a.itemId < b.itemId) {
                         return -1;
-                    } else if (a.id > b.id) {
+                    } else if (a.itemId > b.itemId) {
                         return 1;
                     } else {
                         return 0;

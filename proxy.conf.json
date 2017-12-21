@@ -1,0 +1,8 @@
+{
+    "/ejb-web": {
+        "target": "http://localhost:8080",
+        "pathRewrite": { "^/ejb-web": "/ejb-web" },
+        "secure": false,
+        "changeOrigin": true
+    }
+}

@@ -1,4 +1,4 @@
 export class CartItem {
-    public productId: string;
+    public productId: number;
     public quantity = 0;
   }
