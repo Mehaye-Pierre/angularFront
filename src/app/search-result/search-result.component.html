@@ -4,16 +4,28 @@
         <div class="text-center">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a (click)="sortByNameIncreasing()">Trier par nom A-Z</a>
+                    <a *ngIf="sortChoice === 'name increasing'" (click)="sortByNameIncreasing()">
+                        <strong>Trier par nom A-Z</strong>
+                    </a>
+                    <a *ngIf="sortChoice !== 'name increasing'" (click)="sortByNameIncreasing()">Trier par nom A-Z</a>
                 </li>
                 <li class="list-group-item">
-                    <a (click)="sortByNameDecreasing()">Trier par nom Z-A</a>
+                    <a *ngIf="sortChoice === 'name decreasing'" (click)="sortByNameDecreasing()">
+                        <strong>Trier par nom Z-A</strong>
+                    </a>
+                    <a *ngIf="sortChoice !== 'name decreasing'" (click)="sortByNameDecreasing()">Trier par nom Z-A</a>
                 </li>
                 <li class="list-group-item">
-                    <a (click)="sortByPriceIncreasing()">Trier par prix croissant</a>
+                    <a *ngIf="sortChoice === 'price increasing'" (click)="sortByPriceIncreasing()">
+                        <strong>Trier par prix croissants</strong>
+                    </a>
+                    <a *ngIf="sortChoice !== 'price increasing'" (click)="sortByPriceIncreasing()">Trier par prix croissants</a>
                 </li>
                 <li class="list-group-item">
-                    <a (click)="sortByPriceDecreasing()">Trier par prix décroissant</a>
+                    <a *ngIf="sortChoice === 'price decreasing'" (click)="sortByPriceDecreasing()">
+                        <strong>Trier par prix décroissants</strong>
+                    </a>
+                    <a *ngIf="sortChoice !== 'price decreasing'" (click)="sortByPriceDecreasing()">Trier par prix décroissants</a>
                 </li>
             </ul>
         </div>
