@@ -13,12 +13,10 @@ export class ShoppingCartService {
   private storage: Storage;
   private subscriptionObservable: Observable<ShoppingCart>;
   private subscribers: Array<Observer<ShoppingCart>> = new Array<Observer<ShoppingCart>>();
-  private products: Product[];
 
   public constructor(private storageService: StorageService,
                      private productService: ProductsDataService) {
     this.storage = this.storageService.get();
-    this.productService.all().subscribe((products) => this.products = products.products);
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
       this.subscribers.push(observer);
       observer.next(this.retrieve());
@@ -38,12 +36,25 @@ export class ShoppingCartService {
     if (item === undefined) {
       item = new CartItem();
       item.productId = product.itemId;
+      item.price = product.price;
       cart.items.push(item);
     }
 
     item.quantity += quantity;
     cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
 
+    this.calculateCart(cart);
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
+  public contains(product: Product): boolean {
+    return (this.retrieve().items.find((p) => p.productId === product.itemId) !== undefined);
+  }
+
+  public removeItem(product: Product): void {
+    const cart = this.retrieve();
+    cart.items = cart.items.filter((cartItem) => cartItem.productId !== product.itemId);
     this.calculateCart(cart);
     this.save(cart);
     this.dispatch(cart);
@@ -58,7 +69,7 @@ export class ShoppingCartService {
 
   private calculateCart(cart: ShoppingCart): void {
     cart.itemsTotal = cart.items
-                          .map((item) => item.quantity * this.products.find((p) => p.itemId === item.productId).price)
+                          .map((item) => item.quantity * item.price)
                           .reduce((previous, current) => previous + current, 0);
   }
 

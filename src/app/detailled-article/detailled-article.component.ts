@@ -41,16 +41,14 @@ export class DetailledArticleComponent implements OnInit {
     this.shoppingCartService.addItem(this.products, -quantity);
   }
 
+  public removeAllProductFromCart(): void {
+    this.shoppingCartService.removeItem(this.products);
+  }
+
+
+
   public productInCart(): boolean {
-    return Observable.create((obs: Observer<boolean>) => {
-      const sub = this.shoppingCartService
-                      .get()
-                      .subscribe((cart) => {
-                        obs.next(cart.items.some((i) => i.productId === this.products.itemId));
-                        obs.complete();
-                      });
-      sub.unsubscribe();
-    });
+    return this.shoppingCartService.contains(this.products);
   }
 
   public goBack() {
