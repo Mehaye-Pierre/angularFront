@@ -1,37 +1,40 @@
 <h3 *ngIf="search">Résultat de la recherche pour "{{search}}"</h3>
 <div class="row">
-    <div class="col-md-2 col-md-offset-0">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a (click)="sortByNameIncreasing()">Trier par nom A-Z</a>
-            </li>
-            <li class="list-group-item">
-                <a (click)="sortByNameDecreasing()">Trier par nom Z-A</a>
-            </li>
-            <li class="list-group-item">
-                <a (click)="sortByPriceIncreasing()">Trier par prix croissant</a>
-            </li>
-            <li class="list-group-item">
-                <a (click)="sortByPriceDecreasing()">Trier par prix décroissant</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-4 col-md-offset-1">
+    <div class="col-md-12 col-md-offset-0">
         <div class="text-center">
-            <ul>
-                <div *ngFor="let product of products | async | filterProducts: search | sortProducts: sortChoice | paginate: { itemsPerPage: 6, currentPage: p }">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a (click)="sortByNameIncreasing()">Trier par nom A-Z</a>
+                </li>
+                <li class="list-group-item">
+                    <a (click)="sortByNameDecreasing()">Trier par nom Z-A</a>
+                </li>
+                <li class="list-group-item">
+                    <a (click)="sortByPriceIncreasing()">Trier par prix croissant</a>
+                </li>
+                <li class="list-group-item">
+                    <a (click)="sortByPriceDecreasing()">Trier par prix décroissant</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div *ngFor="let product of products | async | filterProducts: search | sortProducts: sortChoice | paginate: { itemsPerPage: 8, currentPage: p }">
+        <div class="col-md-3 col-md-offset-0">
+            <div class="text-center">
+                <ul>
                     <img src="/assets/book.jpg" alt=" ... " class="img-thumbnail" routerLink="/detail/{{product.id}}">
                     <a routerLink="/detail/{{product.id}}">
           {{product.name}}
       </a> {{product.price}} €
                     <p>
                         <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(product, 1)">Acheter</button>
-                        <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, 1)">Enlever</button>
-                        <button type="button" class="btn btn-primary js-btn-remove" *ngIf="productInCart(product) | async" (click)="removeProductFromCart(product, productInCart(product))">Enlever tout</button>
                     </p>
                     <br>
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
