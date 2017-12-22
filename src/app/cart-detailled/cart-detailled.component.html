@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-3 col-md-offset-4">
                     <div class="text-center">
-                        <img src="/assets/book.jpg" alt=" ... " class="img-thumbnail" routerLink="/detail/{{item.product.id}}">
+                        <img src="/assets/book.jpg" alt=" ... " class="img-thumbnail" routerLink="/detail/{{item.product.itemId}}">
                         <span class="text--bold js-product-name">{{item.product.name}}</span>
                         <small class="product_price js-product-price">{{item.price.toFixed(2)}} €</small><br>
                         <small class="product_quantity js-product-quantity">{{item.quantity}} exemplaire</small><small class="product_quantity js-product-quantity" *ngIf="item.quantity > 1">s</small><br>
@@ -28,7 +28,7 @@
                     <p>
                         <button type="button" class="btn btn-primary js-btn-add" (click)="addProductToCart(item.product, 1)">Acheter</button>
                         <button type="button" class="btn btn-primary js-btn-remove" (click)="removeProductFromCart(item.product, 1)">Enlever</button>
-                        <button type="button" class="btn btn-primary js-btn-remove" (click)="removeProductFromCart(item.product, productInCart(item.product))">Enlever tout</button>
+                        <button type="button" class="btn btn-primary js-btn-remove" (click)="removeAllProductFromCart(item.product)">Enlever tout</button>
                     </p>
                 </div>
             </div>
@@ -41,7 +41,7 @@
     <div class="col-md-3 col-md-offset-4 ">
         <div class="text-center">
             <button class="btn btn-default" mwlConfirmationPopover [title]="title" [message]="message" [confirmText]="confirmText" [cancelText]="cancelText" (confirm)="confirmClicked = true; emptyCart()" (cancel)="cancelClicked = true" confirmButtonType="danger"
-                cancelButtonType="default" (click)="confirmClicked = false; cancelClicked = false" *ngIf="itemCount">Tout vider</button>
+                cancelButtonType="default" (click)="confirmClicked = false; cancelClicked = false" *ngIf="itemList.length > 0">Tout vider</button>
         </div>
     </div>
 </div>

@@ -30,6 +30,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin/admin.component';
 import { SortProducts } from './pipes/sort-products.pipe';
 import { FilterProducts } from './pipes/filter-products.pipe';
+import { AuthGuard } from './services/auth-guard.service';
 
 
 const appRoutes: Routes = [
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
   { path: 'status', component: StatusComponent, canActivate: [EnsureAuthenticated] },
   { path: 'cart', component: CartDetailledComponent },
   { path: 'delivery', component: DeliveryComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'search-result', component: SearchResultComponent },
   { path: 'billing', component: BillingComponent },
   { path: 'order-confirmed', component: OrderConfirmedComponent },
@@ -84,6 +85,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
+    AuthGuard,
     EnsureAuthenticated,
     LoginRedirect,
     ProductsDataService,

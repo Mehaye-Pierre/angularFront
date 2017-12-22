@@ -10,14 +10,6 @@ import { Observer } from 'rxjs/Observer';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 
 
-interface CurrentItem extends CartItem {
-  product: Product;
-  quantity: number;
-  price: number;
-}
-
-
-
 
 @Component({
   selector: 'app-cart-detailled',
@@ -28,7 +20,7 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
   public products: Observable<ProductsResponse>;
   public cart: Observable<ShoppingCart>;
   public itemCount: number;
-  public itemList: CurrentItem[];
+  public itemList:  CartItem[];
   public title = 'Suppression';
   public message = 'Voulez-vous vraiment vider la totalité du panier ?';
   public confirmClicked = false;
@@ -49,34 +41,17 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.cart = this.shoppingCartService.get();
-    this.cartSubscription = this.cart.subscribe((cart) => {
-      this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
-      this.productsService.all().subscribe((products) => {
-        this.itemList = cart.items
-        .map((item) => {
-           const product = products.products.find((p) => p.itemId === item.productId);
-           return {
-             ...item,
-             product,
-             quantity : item.quantity,
-             price: product.price,
-              };
-        });
-    });
-    });
+    this.cart.subscribe((value: ShoppingCart) => this.itemList = value.items.map(item => {
+      const product = this.productsService.get(String(item.productId));
+      return {
+      ...item,
+      product,
+      quantity : item.quantity,
+      price: item.price
+       };
+    }));
   }
 
-  public productInCart(product: Product): boolean {
-    return Observable.create((obs: Observer<boolean>) => {
-      const sub = this.shoppingCartService
-                      .get()
-                      .subscribe((cart) => {
-                        obs.next(cart.items.some((i) => i.productId === product.itemId));
-                        obs.complete();
-                      });
-      sub.unsubscribe();
-    });
-  }
 
   public addProductToCart(product: Product): void {
     this.shoppingCartService.addItem(product, 1);
@@ -84,6 +59,10 @@ export class CartDetailledComponent implements OnInit, OnDestroy {
 
   public removeProductFromCart(product: Product, quantity: number): void {
     this.shoppingCartService.addItem(product, -quantity);
+  }
+
+  public removeAllProductFromCart(product: Product, quantity: number): void {
+    this.shoppingCartService.removeItem(product);
   }
 
   public ngOnDestroy(): void {
